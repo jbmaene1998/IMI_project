@@ -1,0 +1,65 @@
+﻿<form id="app">
+    <div class="mb-1"></div>
+    <div class="form-outline mb-4">
+        <input type="email" id="form2Example1" class="form-control" v-model="user.email" required/>
+        <label class="form-label text-white" for="email">Email address</label>
+    </div>
+    <div class="form-outline mb-4">
+        <input type="password" id="form2Example2" class="form-control" v-model="user.password" required/>
+        <label class="form-label text-white" for="password">Password</label>
+    </div>
+    <button type="button" class="btn btn-primary btn-block mb-4" v-on:click="login">Sign in</button>
+    <button type="button" class="btn btn-outline-primary btn-block" v-on:click="create">Register here</button>
+</form>
+
+@section scripts{
+ <script src="~/lib/vue/vue.js"></script>
+ <script src="~/lib/axios/axios.min.js"></script>
+ <script>
+    var baseUrl= "https://localhost:5001/";
+    const axiosConfig = { headers: {'Content-Type': 'application/json'} };
+    
+    var app = new Vue({
+        el: "#app",
+        data: {
+            user: {
+                email: "",
+                password: ""
+            }
+        },
+        methods: {
+                login: function () {
+                    if (this.user.email == "" || this.user.email == null){
+                        alert("Please provide an email.");
+                    }
+                    else if (this.user.password == "" || this.user.password == null){
+                        alert("Please provide a password.");
+                    }
+                    else {
+                        axios.post(baseUrl + "login", this.user, axiosConfig)
+                            .then(function (response) {
+                                if(response["data"].isAdmin == false) {
+                                window.location = "https://localhost:44373/Home/Main";
+                                sessionStorage.setItem('token', response["data"].token);
+                                sessionStorage.setItem('id', response["data"].id);
+                                sessionStorage.setItem('isRecruiter', response["data"].isRecruiter);
+                                sessionStorage.setItem('isAdmin', response["data"].isAdmin);
+                                }
+                                else {
+                                window.location = "https://localhost:44373/Home/Admin";
+                                sessionStorage.setItem('token', response["data"].token);
+                                sessionStorage.setItem('id', response["data"].id);
+                                sessionStorage.setItem('isRecruiter', response["data"].isRecruiter);
+                                sessionStorage.setItem('isAdmin', response["data"].isAdmin);
+                                }
+
+                            });
+                    }
+                },
+                create() {
+                    window.location = "https://localhost:44373/Home/Create";
+                }
+        }
+    })
+ </script>
+}

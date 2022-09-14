@@ -1,0 +1,18 @@
+﻿@inherits Imi.Project.Blazor.Components.Base.StudentMatchListComponentBase
+@using Imi.Project.Blazor.Core.Modals
+
+<div class="row">
+    @{ foreach (var match in Matches)
+        {
+            <div class="col-sm-4">
+                <div class="card m-2" style="width:200px;">
+                    <div class="card-body">
+                        <img src="https://thispersondoesnotexist.com/image" style="width:150px;"/>
+                        <h5 class="card-title">@match.Recruiter.FirstName</h5>
+                        <a @onclick="e => OnDetailClick.InvokeAsync(match.RecruiterId)" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+            }
+        }
+</div>

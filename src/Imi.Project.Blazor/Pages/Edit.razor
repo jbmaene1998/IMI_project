@@ -1,0 +1,38 @@
+﻿@page "/edit"
+@inherits Imi.Project.Blazor.Pages.Base.EditBase
+@inject IModalService modal
+@using Imi.Project.Blazor.Core.Modals
+@using Imi.Project.Blazor.Components
+@using Blazored
+@using Blazored.Modal
+@using Blazored.Modal.Services
+
+<button @onclick="@(()=>modal.Show<NavigationComponent>("Navigation"))" class="btn btn-primary">Menu</button>
+
+@{
+    if (currentRecruiter != null)
+    {
+        <RecruiterEditComponent Recruiter="currentRecruiter"
+                                    OnSave="RecruiterSave"
+                                    OnCompanyInput="OnCompanyInput"
+                                    OnCityInput="OnCityInput"
+                                    CompanySearchText="companySearchText"
+                                    CitySearchText="citySearchText"
+                                    Companies="companies" 
+                                    Locations="locations">
+        </RecruiterEditComponent>
+
+    }
+    else if (currentStudent != null)
+    {
+        <StudentEditComponent Student="currentStudent"
+                                    OnSave="StudentSave"
+                                    SchoolSearchText="schoolSearchText"
+                                    CitySearchText="citySearchText"
+                                    JobSearchText="jobSearchText"
+                                    Schools="schools" 
+                                    Jobs="jobs"
+                                    Locations="locations">
+        </StudentEditComponent>
+    }
+}

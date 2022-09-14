@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:bhv="clr-namespace:Imi.Project.Mobile.Core.Domain.Behavior;assembly=Imi.Project.Mobile.Core"
+             x:Class="Imi.Project.Mobile.Pages.CreateStudentPage"
+             Style="{StaticResource MainLayout}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout x:Name="form">
+                <Image Style="{StaticResource SmallLogo}"/>
+                <Label Style="{StaticResource Title}" Text="Your personal info"></Label>
+                <Frame Style="{StaticResource InputBorder}">
+                    <StackLayout>
+                        <Label x:Name="LblFirstName" Style="{StaticResource SkillText}" TextColor="red" Text=""/>
+                        <Label Style="{StaticResource SkillText}" Text="Enter first name"/>
+                        <Entry x:Name="TxtFirstName" Style="{StaticResource TextInput}" Text="{Binding FirstName}" Placeholder="First Name"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Style="{StaticResource InputBorder}">
+                    <StackLayout>
+                        <Label x:Name="LblLastName" Style="{StaticResource SkillText}" TextColor="red" Text=""/>
+                        <Label Style="{StaticResource SkillText}" Text="Enter last Name"/>
+                        <Entry x:Name="TxtLastName" Style="{StaticResource TextInput}" Text="{Binding LastName}" Placeholder="Last Name"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Style="{StaticResource InputBorder}">
+                    <StackLayout>
+                        <Label x:Name="LblDate" Style="{StaticResource SkillText}" TextColor="red" Text=""/>
+                        <Label Style="{StaticResource SkillText}" Text="Select date of birth"/>
+                        <DatePicker x:Name="DatePickerDOB" Style="{StaticResource TextInput}" Date="{Binding DateOfBirth}"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Style="{StaticResource InputBorder}">
+                    <StackLayout>
+                        <Label x:Name="LblEmail" Style="{StaticResource SkillText}" TextColor="red" Text=""/>
+                        <Label Style="{StaticResource SkillText}" Text="Enter e-mail"/>
+                        <Entry x:Name="TxtEmail" Style="{StaticResource TextInput}" Text="{Binding Email}" Keyboard="Email" Placeholder="E-mail"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Style="{StaticResource InputBorder}">
+                    <StackLayout>
+                        <Label x:Name="LblPhone" Style="{StaticResource SkillText}" TextColor="red" Text=""/>
+                        <Label Style="{StaticResource SkillText}" Text="Enter phone number"/>
+                        <Entry x:Name="TxtPhoneNumber" Style="{StaticResource TextInput}" Text="{Binding Phone}" Keyboard="Telephone" Placeholder="Phone"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Style="{StaticResource InputBorder}">
+                    <StackLayout>
+                        <Label x:Name="LblPassword" Style="{StaticResource SkillText}" TextColor="red" Text=""/>
+                        <Label Style="{StaticResource SkillText}" Text="Enter password"/>
+                        <Entry x:Name="TxtPassword" Style="{StaticResource TextInput}" Text="{Binding Password}" Placeholder="Password"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Style="{StaticResource InputBorder}">
+                    <StackLayout>
+                        <Label Style="{StaticResource SkillText}" Text="Select school"/>
+                        <SearchBar x:Name="SearchBarSchool" Style="{StaticResource SearchBar}" Placeholder="Search school" Text="{Binding SearchBarSchool}">
+                            <SearchBar.Behaviors>
+                                <bhv:EventToCommandBehavior
+                                        EventName="TextChanged"
+                                        Command="{Binding SearchSchoolCommand}"
+                                        />
+                            </SearchBar.Behaviors>
+                        </SearchBar>
+                        <ListView IsVisible="{Binding SchoolsIsVisible}" HeightRequest="150" HorizontalOptions="Center" VerticalOptions="Center" ItemsSource="{Binding Schools}">
+                            <ListView.Behaviors>
+                                <bhv:EventToCommandBehavior
+                                        EventName="ItemTapped"
+                                        Command="{Binding TapSchool}">
+                                </bhv:EventToCommandBehavior>
+                            </ListView.Behaviors>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text="{Binding Name}" TextColor="white"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+                <Frame Style="{StaticResource InputBorder}">
+                    <StackLayout>
+                        <Label Style="{StaticResource SkillText}" Text="Select job"/>
+                        <SearchBar x:Name="SearchBarJob" Style="{StaticResource SearchBar}" Text="{Binding SearchBarJob}" Placeholder="Search job">
+                            <SearchBar.Behaviors>
+                                <bhv:EventToCommandBehavior
+                                        EventName="TextChanged"
+                                        Command="{Binding SearchJobCommand}"
+                                        />
+                            </SearchBar.Behaviors>
+                        </SearchBar>
+                        <ListView IsVisible="{Binding JobsIsVisible}" HeightRequest="150" HorizontalOptions="Center" VerticalOptions="Center" ItemsSource="{Binding Jobs}">
+                            <ListView.Behaviors>
+                                <bhv:EventToCommandBehavior
+                                        EventName="ItemTapped"
+                                        Command="{Binding TapJob}">
+                                </bhv:EventToCommandBehavior>
+                            </ListView.Behaviors>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text="{Binding Name}" TextColor="white"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+                <Frame Style="{StaticResource InputBorder}">
+                    <StackLayout>
+                        <Label Style="{StaticResource SkillText}" Text="Search continent"/>
+                        <SearchBar Style="{StaticResource SearchBar}" Text="{Binding EntryContinent}" Placeholder="Search continent">
+                            <SearchBar.Behaviors>
+                                <bhv:EventToCommandBehavior
+                                        EventName="TextChanged"
+                                        Command="{Binding SearchContinentCommand}"
+                                        />
+                            </SearchBar.Behaviors>
+                        </SearchBar>
+                        <ListView IsVisible="{Binding ContinentIsVisible}" HeightRequest="150" HorizontalOptions="Center" VerticalOptions="Center" ItemsSource="{Binding Continents}">
+                            <ListView.Behaviors>
+                                <bhv:EventToCommandBehavior
+                                        EventName="ItemTapped"
+                                        Command="{Binding TapContinent}">
+                                </bhv:EventToCommandBehavior>
+                            </ListView.Behaviors>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text="{Binding Output}" TextColor="white"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+                <Frame Style="{StaticResource InputBorder}">
+                    <StackLayout>
+                        <Label Style="{StaticResource SkillText}" Text="Select country for internship"/>
+                        <Entry Style="{StaticResource SearchBar}" Placeholder="Search country" Text="{Binding EntryCountry}">
+                            <Entry.Behaviors>
+                                <bhv:EventToCommandBehavior
+                                        EventName="TextChanged"
+                                        Command="{Binding SearchCountryCommand}"
+                                        />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <ListView IsVisible="{Binding CountryIsVisible}" HeightRequest="150" HorizontalOptions="Center" VerticalOptions="Center" ItemsSource="{Binding Countries}">
+                            <ListView.Behaviors>
+                                <bhv:EventToCommandBehavior
+                                        EventName="ItemTapped"
+                                        Command="{Binding TapCountry}">
+                                </bhv:EventToCommandBehavior>
+                            </ListView.Behaviors>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text="{Binding Output}" TextColor="white"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+                <Frame Style="{StaticResource InputBorder}">
+                    <StackLayout>
+                        <Label Style="{StaticResource SkillText}" Text="Select location for internship"/>
+                        <SearchBar x:Name="SearchBarLocation" Style="{StaticResource SearchBar}" Placeholder="Search city" Text="{Binding SearchBarLocation}">
+                            <SearchBar.Behaviors>
+                                <bhv:EventToCommandBehavior
+                                        EventName="TextChanged"
+                                        Command="{Binding SearchLocationCommand}"
+                                        />
+                            </SearchBar.Behaviors>
+                        </SearchBar>
+                        <ListView IsVisible="{Binding LocationsIsVisible}" HeightRequest="150" HorizontalOptions="Center" VerticalOptions="Center" ItemsSource="{Binding Locations}">
+                            <ListView.Behaviors>
+                                <bhv:EventToCommandBehavior
+                                        EventName="ItemTapped"
+                                        Command="{Binding TapLocation}">
+                                </bhv:EventToCommandBehavior>
+                            </ListView.Behaviors>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text="{Binding City}" TextColor="white"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+                <Button x:Name="BtnCreateStudent" Style="{StaticResource StandardButton}" Margin="0,20,0,35" Text="Save" Command="{Binding AddStudent}"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

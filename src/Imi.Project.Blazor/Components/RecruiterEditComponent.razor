@@ -1,0 +1,59 @@
+﻿@using Imi.Project.Blazor.Core.Modals
+@inherits Imi.Project.Blazor.Components.Base.RecruiterEditComponentBase
+
+<EditForm Model="Recruiter"OnValidSubmit="@OnSave">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <br/>
+    <h1>Edit profile</h1>
+    <br/>
+    <div style="display: flex; flex-direction: column; justify-content: center; margin-left: auto; margin-right: auto">
+        <div class="form-floating mb-3">
+            <label>First Name</label>
+            <InputText class="form-control" @bind-Value="Recruiter.FirstName" />
+        </div>
+        <div class="form-floating mb-3">
+            <label>Last Name</label>
+            <InputText class="form-control" @bind-Value="Recruiter.LastName" />
+        </div>
+        <div class="form-floating mb-3">
+            <label>Email</label>
+            <InputText class="form-control" @bind-Value="Recruiter.Email" />
+        </div>
+        <div class="form-floating mb-3">
+            <label>Phone</label>
+            <InputText class="form-control" @bind-Value="Recruiter.Phone" />
+        </div><div class="text-center bg-blue-100">
+            <label>Company</label>
+            <InputText class="border-4 w-1/3 rounded m-6 p-6 h-8 border-blue-300" @bind-Value=Recruiter.CompanySearchText @oninput="OnCompanyInput" placeholder="@Recruiter.Company.Name"></InputText>
+            <InputSelect @bind-Value="@Recruiter.CompanyId"> 
+            @{
+                if (Companies != null)
+                {
+                    foreach (var item in Companies)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                }
+            };
+            </InputSelect>
+        </div>
+        <div class="text-center bg-blue-100">
+            <label>City</label>
+            <InputText class="border-4 w-1/3 rounded m-6 p-6 h-8 border-blue-300" @bind-Value=Recruiter.CitySearchText @oninput="OnCityInput" placeholder="@Recruiter.Location.City"></InputText>
+            <InputSelect @bind-Value="@Recruiter.LocationId" > 
+            @{
+                if (Locations != null)
+                {
+                    foreach (Location location in Locations)
+                    {
+                        <option value="@location.Id" >@location.City</option>
+                    }
+                }
+            };
+            </InputSelect>
+        </div>
+        <br/>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </div>
+</EditForm>

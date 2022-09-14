@@ -1,0 +1,17 @@
+﻿@inherits Imi.Project.Blazor.Components.Base.StudentDetailComponentBase
+
+<div class="d-flex flex-column">
+    <img src="@Student.ImageUrl" style="width:220px; margin-left: auto; margin-right: auto;" />
+    <h1>@Student.FirstName @Student.LastName</h1>
+    <h4>Company</h4>
+    <h1>@Student.School.Name</h1>
+    <h4>Date of birth</h4>
+    <h1>@Student.DateOfBirth.Date</h1>
+    <h4>Email</h4>
+    <h1>@Student.Email</h1>
+    <h4>phone</h4>
+    <h1>@Student.Phone</h1>
+    <h4>Location</h4>
+    <h1>@Student.Location.City</h1>
+    <button @onclick="OnGoBackClick" style="width:220px; margin-left: auto; margin-right: auto;" class="btn btn-primary">Go back</button>
+</div>

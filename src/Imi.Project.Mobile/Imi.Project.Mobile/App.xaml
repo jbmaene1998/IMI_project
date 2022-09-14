@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Imi.Project.Mobile.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Common colors-->
+            <Color x:Key="BackgroundColor">#000000</Color>
+            <Color x:Key="ThemeColor">#FF9900</Color>
+            <Color x:Key="BlackTextColor">#000000</Color>
+            <Color x:Key="WhiteTextColor">#FFFFFF</Color>
+            <!--Widths and Heights-->
+            <x:Int32 x:Key="StandardHeight">50</x:Int32>
+            <x:Int32 x:Key="BigHeight">50</x:Int32>
+            <x:Int32 x:Key="StandardWidth">320</x:Int32>
+            <x:Int32 x:Key="BigWidth">365</x:Int32>
+            <!--Font sizes-->
+            <x:Int32 x:Key="VeryBigText">40</x:Int32>
+            <x:Int32 x:Key="BigText">25</x:Int32>
+            <x:Int32 x:Key="MediumText">20</x:Int32>
+            <x:Int32 x:Key="SmallText">15</x:Int32>
+            <x:Int32 x:Key="VerySmallText">10</x:Int32>
+            <!--Ellipse-->
+            <x:Int32 x:Key="SmallEllipse">50</x:Int32>
+            <x:Int32 x:Key="MediumEllipse">135</x:Int32>
+            <!--Border radius-->
+            <x:Int32 x:Key="StandardRadius">10</x:Int32>
+            <!--Borders-->
+            <x:Int32 x:Key="SmallBorder">1</x:Int32>
+            <x:Int32 x:Key="StandardBorder">3</x:Int32>
+            <!--Icons width-->
+            <x:Int32 x:Key="IconWidth">50</x:Int32>
+            <!--Images-->
+            <Style x:Key="LogoBase" TargetType="Image">
+                <Setter Property="Source" Value="IT_InternShips.png"/>
+            </Style>
+            <Style x:Key="MediumLogo" TargetType="Image" 
+                   BasedOn="{StaticResource LogoBase}">
+                <Setter Property="HeightRequest" Value="90"/>
+                <Setter Property="Margin" Value="0,50,20,0"/>
+            </Style>
+            <Style x:Key="SmallLogo" TargetType="Image"
+                   BasedOn="{StaticResource LogoBase}">
+                <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="Margin" Value="0,22,20,0"/>
+            </Style>
+            <!--Global-->
+            <Style x:Key="MainLayout" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"/>
+            </Style>
+            <!--Form text components-->
+            <Style x:Key="TextInput" TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource WhiteTextColor}"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumText}"/>
+                <Setter Property="PlaceholderColor" Value="{StaticResource WhiteTextColor}"/>
+                <Setter Property="HeightRequest" Value="{StaticResource StandardHeight}"/>
+                <Setter Property="WidthRequest" Value="{StaticResource StandardWidth}"/>
+            </Style>
+            <Style x:Key="LabelInput" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+                <Setter Property="FontSize" Value="{StaticResource SmallText}"/>
+            </Style>
+            <Style x:Key="SkillText" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+                <Setter Property="FontSize" Value="{StaticResource SmallText}"/>
+            </Style>
+            <Style x:Key="SearchBar" TargetType="SearchBar">
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource WhiteTextColor}"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumText}"/>
+                <Setter Property="PlaceholderColor" Value="{StaticResource WhiteTextColor}"/>
+                <Setter Property="HeightRequest" Value="{StaticResource StandardHeight}"/>
+                <Setter Property="WidthRequest" Value="{StaticResource StandardWidth}"/>
+            </Style>
+            <!--Form button components-->
+            <Style x:Key="UploadInput" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ThemeColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource BlackTextColor}"/>
+                <Setter Property="FontSize" Value="{StaticResource SmallText}"/>
+                <Setter Property="WidthRequest" Value="{StaticResource StandardWidth}"/>
+                <Setter Property="HeightRequest" Value="{StaticResource StandardHeight}"/>
+            </Style>
+            <Style x:Key="StandardButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+                <Setter Property="BorderColor" Value="{StaticResource ThemeColor}"/>
+                <Setter Property="BorderWidth" Value="{StaticResource StandardBorder}"/>
+                <Setter Property="WidthRequest" Value="160"/>
+                <Setter Property="Margin" Value="75,30,75,0"/>
+                <Setter Property="HeightRequest" Value="{StaticResource StandardHeight}"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+            <Style x:Key="CreateAccountButton" TargetType="Button">
+                <Setter Property="TextColor" Value="#2196f3"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="BorderWidth" Value="1"/>
+            </Style>
+            <!--Extra form components-->
+            <Style x:Key="InputBorder" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"/>
+                <Setter Property="Margin" Value="30,30,30,0"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="BorderColor" Value="{StaticResource ThemeColor}"/>
+            </Style>
+            <Style x:Key="InvinsibleFrame" TargetType="Frame">
+                <Setter Property="WidthRequest" Value="{StaticResource StandardWidth}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"/>
+            </Style>
+            <!--Swipe card components-->
+            <Style x:Key="SwipeCard" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"/>
+                <Setter Property="CornerRadius" Value="{StaticResource StandardRadius}"/>
+                <Setter Property="BorderColor" Value="{StaticResource ThemeColor}"/>
+                <Setter Property="WidthRequest" Value="{StaticResource BigWidth}"/>
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+            <Style x:Key="ProfilePicture" TargetType="Frame">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="WidthRequest" Value="{StaticResource MediumEllipse}"/>
+                <Setter Property="HeightRequest" Value="{StaticResource MediumEllipse}"/>
+            </Style>
+            <Style x:Key="SmallProfilePicture" TargetType="Frame">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="WidthRequest" Value="{StaticResource SmallEllipse}"/>
+                <Setter Property="HeightRequest" Value="{StaticResource SmallEllipse}"/>
+            </Style>
+            <Style x:Key="SwipeCardProfileName" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource MediumText}"/>
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+            </Style>
+            <Style x:Key="SwipeCardVacancy" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource MediumText}"/>
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+            </Style>
+            <Style x:Key="SwipeCardCompanyName" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource BigText}"/>
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+            </Style>
+            <Style x:Key="SwipeCardProfileAge" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource SmallText}"/>
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+            </Style>
+            <Style x:Key="SwipeCardProfileLocation" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource SmallText}"/>
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+            </Style>
+            <Style x:Key="SwipeCardProfileSkill" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource SmallText}"/>
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+            </Style>
+            <!--Match components-->
+            <Style x:Key="MatchItem" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"/>
+                <Setter Property="WidthRequest" Value="{StaticResource BigWidth}"/>
+            </Style>
+            <Style x:Key="MatchCompanyName" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource SmallText}"/>
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+            </Style>
+            <Style x:Key="MatchStudentName" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource SmallText}"/>
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+            </Style>
+            <!--Modal components-->
+            <Style x:Key="DetailModal" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"/>
+                <Setter Property="WidthRequest" Value="{StaticResource StandardWidth}"/>
+                <Setter Property="HeightRequest" Value="{StaticResource BigHeight}"/>
+                <Setter Property="BorderColor" Value="{StaticResource ThemeColor}"/>
+            </Style>
+            <Style x:Key="InfoLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource VerySmallText}"/>
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+            </Style>
+            <!--Chat components-->
+            <Style x:Key="ChatSenderCell" TargetType="Frame">
+                <Setter Property="WidthRequest" Value="{StaticResource BigWidth}"/>
+                <Setter Property="CornerRadius" Value="{StaticResource StandardRadius}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource ThemeColor}"/>
+                <Setter Property="Margin" Value="70, 15, 10, 15"/>
+            </Style>
+            <Style x:Key="ChatReceiverCell" TargetType="Frame">
+                <Setter Property="WidthRequest" Value="{StaticResource BigWidth}"/>
+                <Setter Property="CornerRadius" Value="{StaticResource StandardRadius}"/>
+                <Setter Property="BorderColor" Value="{StaticResource ThemeColor}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}"/>
+                <Setter Property="Margin" Value="10, 15, 70, 15"/>
+            </Style>
+            <!--Icon components-->
+            <Style x:Key="BaseIconButton" TargetType="ImageButton">
+                <Setter Property="HeightRequest" Value="{StaticResource IconWidth}"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Margin" Value="0,22,0,0"/>
+            </Style>
+            <Style x:Key="LikeIcon" TargetType="ImageButton"
+                   BasedOn="{StaticResource BaseIconButton}">
+                <Setter Property="Source" Value="check.png"/>
+            </Style>
+            <Style x:Key="DislikeIcon" TargetType="ImageButton"
+                   BasedOn="{StaticResource BaseIconButton}">
+                <Setter Property="Source" Value="close.png"/>
+            </Style>
+            <Style x:Key="ChatIcon" TargetType="ImageButton"
+                   BasedOn="{StaticResource BaseIconButton}">
+                <Setter Property="Source" Value="chat.png"/>
+            </Style>
+            <Style x:Key="CloseIcon" TargetType="ImageButton">
+                <Setter Property="Source" Value="close.png"/>
+                <Setter Property="HeightRequest" Value="15"/>
+            </Style>
+            <Style x:Key="HomeIcon" TargetType="ImageButton"
+                   BasedOn="{StaticResource BaseIconButton}">
+                <Setter Property="Source" Value="home.png"/>
+            </Style>
+            <Style x:Key="SendIcon" TargetType="ImageButton"
+                   BasedOn="{StaticResource BaseIconButton}">
+                <Setter Property="Source" Value="paper-plane.png"/>
+            </Style>
+            <Style x:Key="DeleteIcon" TargetType="ImageButton"
+                   BasedOn="{StaticResource BaseIconButton}">
+                <Setter Property="Source" Value="trash-can.png"/>
+            </Style>
+            <Style x:Key="MatchIcon" TargetType="ImageButton"
+                   BasedOn="{StaticResource BaseIconButton}">
+                <Setter Property="Source" Value="user.png"/>
+            </Style>
+            <Style x:Key="SettingsIcon" TargetType="ImageButton"
+                   BasedOn="{StaticResource BaseIconButton}">
+                <Setter Property="Source" Value="wheel.png"/>
+            </Style>
+            <!--Extra compoments-->
+            <Style x:Key="Title" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource VeryBigText}"/>
+                <Setter Property="TextColor" Value="{StaticResource ThemeColor}"/>
+                <Setter Property="Padding" Value="50,50,50,50"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

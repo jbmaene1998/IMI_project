@@ -1,0 +1,17 @@
+﻿@inherits Imi.Project.Blazor.Components.Base.RecruiterDetailComponentBase
+
+<div class="d-flex flex-column">
+    <img src="@Recruiter.ImageUrl" style="width:220px; margin-left: auto; margin-right: auto;" />
+    <h1>@Recruiter.FirstName @Recruiter.LastName</h1>
+    <h4>Company</h4>
+    <h1>@Recruiter.Company.Name</h1>
+    <h4>Date of birth</h4>
+    <h1>@Recruiter.DateOfBirth.Date</h1>
+    <h4>Email</h4>
+    <h1>@Recruiter.Email</h1>
+    <h4>phone</h4>
+    <h1>@Recruiter.Phone</h1>
+    <h4>Location</h4>
+    <h1>@Recruiter.Location.City</h1>
+    <button @onclick="OnGoBackClick" style="width:220px; margin-left: auto; margin-right: auto;" class="btn btn-primary">Go Back</button>
+</div>

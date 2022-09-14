@@ -1,0 +1,67 @@
+﻿body {
+    font-family: 'Montserrat', sans-serif;
+    
+}
+.swagger-ui .topbar {
+    background-color: #FF9900;
+    border-bottom: 3px solid black;
+}
+
+.swagger-ui .opblock {
+    border: 3px solid #000;
+    background-color: black;
+}
+
+.Image {
+    width: 250px;
+    height: auto;
+}
+.swagger-ui .opblock.opblock-get{
+    background-color: antiquewhite;
+    border-color: #61affe;
+}
+.swagger-ui .opblock.opblock-put {
+    background-color: antiquewhite;
+    border-color: orange;
+}
+.swagger-ui .opblock.opblock-post {
+    background-color: antiquewhite;
+    border-color: limegreen;
+}
+.swagger-ui .opblock.opblock-delete {
+    background-color: antiquewhite;
+    border-color: red;
+}
+
+.swagger-ui .opblock .opblock-summary-operation-id, .swagger-ui .opblock .opblock-summary-path, .swagger-ui .opblock .opblock-summary-path__deprecated {
+    font-size: 12px;
+    color: orange;
+}
+
+.opblock-summary-description{
+    color: white;
+}
+
+.swagger-ui .opblock .opblock-summary-description {
+    color: #3b4151;
+    flex: 1 1 auto;
+    font-size: 13px;
+    color: black;
+    word-break: break-word;
+}
+
+.swagger-ui .scheme-container {
+    background: #FF9900;
+    background-color: #FF9900;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 15%);
+    margin: 0 0 20 px;
+    padding: 30 px 0;
+}
+
+.swagger-ui .btn.authorize {
+    background-color: antiquewhite;
+    border-color: #49cc90;
+    color: #49cc90;
+    display: inline;
+    line-height: 1;
+}

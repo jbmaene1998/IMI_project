@@ -1,0 +1,44 @@
+﻿<div class="display: flex; justify-content: center;" id="app">
+  <div class="form-outline mb-4">
+    <select class="form-control" v-on:change="" v-model="language">
+    <option v-for="language in languages"  v-bind:value="language.abrv">{{language.full}}</option>
+    </select>
+    <label class="form-label text-white" for="">Choose language</label>
+  </div>
+  <button type="button" class="btn btn-primary btn-block mb-4" v-on:click="generate">Generate insult</button>
+  <h1 style="color: white; text-align: center;">{{ insult }}</h1>
+</div>
+
+@section scripts{
+ <script src="~/lib/vue/vue.js"></script>
+ <script src="~/lib/axios/axios.min.js"></script>
+ <script>
+    var baseUrl= "https://localhost:5001/";
+    const axiosConfig = { headers: {'Content-Type': 'application/json', Authorization: `Bearer ${sessionStorage.getItem('token')}`}};
+    
+    var app = new Vue({
+        el: "#app",
+        data: {
+            insult: "",
+            language: "",
+            languages: [
+                { full: "English", abrv: "en"},
+                { full: "French", abrv: "fr"},
+                { full: "German", abrv: "de"}
+            ]
+        },
+        methods: {
+        getInsult() {
+            var url= `https://api.allorigins.win/get?url=${encodeURIComponent(`https://evilinsult.com/generate_insult.php?lang=${this.language}&type=text`)}`
+             axios.get(url)
+             .then(response => {
+                this.insult = response.data.contents
+             })},
+        generate: function() {
+            var response = this.getInsult()
+            console.log(this.insult)
+        }
+            }
+    })
+ </script>
+}

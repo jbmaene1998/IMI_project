@@ -1,0 +1,26 @@
+﻿@inherits Imi.Project.Blazor.Components.Base.StudentLikeComponentBase
+<div style="max-width:1000px;">
+    <div class="row row-cols-1 row-cols-md-2 g-4" style="height:600px;">
+        @{
+            foreach (var recruiter in Recruiters)
+            {
+                <div class="col p-2">
+                    <div class="card">
+                        <img src="@recruiter.ImageUrl" style="height: contain" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@recruiter.FirstName @recruiter.LastName</h5>
+                            <p class="card-text">@recruiter.Company.Name</p>
+                            <a @onclick="OnLikeClick" class="btn btn-green">Like</a>
+                            <a @onclick="e => OnDetailClick.InvokeAsync(recruiter.Id)" class="btn btn-primary">Details</a>
+                            <a @onclick="OnDislikeClick" class="btn btn-red">Dislike</a>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">@recruiter.Email</small>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+

@@ -1,0 +1,48 @@
+﻿@page "/home"
+@page "/home/popupdemo"
+@inherits Imi.Project.Blazor.Pages.Base.HomeBase
+@inject IModalService modal
+@using Imi.Project.Blazor.Core.Modals
+@using Imi.Project.Blazor.Components
+@using Blazored
+@using Blazored.Modal
+@using Blazored.Modal.Services
+
+<button @onclick="@(()=>modal.Show<NavigationComponent>("Navigation"))" class="btn btn-primary">Menu</button>
+
+@{
+    @if (selectedStudent is null && selectedRecruiter is null)
+    {
+        if (currentRecruiter != null)
+        {
+            <RecruiterLikeComponent Students="students"
+                                    OnDislikeClick="Dislike"
+                                    OnLikeClick="Like">
+            </RecruiterLikeComponent>
+        }
+        else if (currentStudent != null)
+        {
+            <StudentLikeComponent Recruiters="recruiters"
+                                  OnDislikeClick="Dislike"
+                                  OnLikeClick="Like">
+            </StudentLikeComponent>
+        }
+    }
+    else
+    {
+        if (currentRecruiter != null)
+        {
+            <StudentDetailComponent Student="selectedStudent"
+                                      OnGoBackClick="GoBack">
+            </StudentDetailComponent>
+        }
+        else if (currentStudent != null)
+        {
+            <RecruiterDetailComponent Recruiter="selectedRecruiter"
+                                      OnGoBackClick="GoBack">
+            </RecruiterDetailComponent>
+        }
+    }
+}
+
+

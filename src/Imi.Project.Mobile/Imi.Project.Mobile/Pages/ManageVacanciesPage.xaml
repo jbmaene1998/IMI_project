@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Imi.Project.Mobile.Pages.ManageVacanciesPage"        
+             xmlns:bhv="clr-namespace:Imi.Project.Mobile.Core.Domain.Behavior;assembly=Imi.Project.Mobile.Core"
+             Style="{StaticResource MainLayout}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <FlexLayout JustifyContent="SpaceAround">
+                    <ImageButton x:Name="BtnMatch" Style="{StaticResource MatchIcon}" Command="{Binding OpenMatches}"/>
+                    <Image Style="{StaticResource SmallLogo}"/>
+                    <ImageButton x:Name="BtnSettings" Style="{StaticResource SettingsIcon}" Command="{Binding OpenSettings}"/>
+                </FlexLayout>
+                <Frame Style="{StaticResource InputBorder}">
+                        <FlexLayout Direction="Column" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Label Style="{StaticResource SwipeCardCompanyName}" Text="Search job" HorizontalTextAlignment="Center"/>
+                        <StackLayout>
+                            <Label x:Name="LblJob" Style="{StaticResource SkillText}" TextColor="red" Text=""/>
+                            <SearchBar HorizontalOptions="Center" x:Name="SearchBarJob" Style="{StaticResource SearchBar}" Text="{Binding SearchBarText}" Placeholder="Search job">
+                                <SearchBar.Behaviors>
+                                    <bhv:EventToCommandBehavior
+                                        EventName="TextChanged"
+                                        Command="{Binding SearchCommand}"
+                                        />
+                                </SearchBar.Behaviors>
+                            </SearchBar>
+                            <ListView x:Name="LstJob" HeightRequest="150" HorizontalOptions="Center" IsVisible="{Binding JobsIsVisible}" ItemsSource="{Binding Jobs}" VerticalOptions="Center">
+                                <ListView.Behaviors>
+                                    <bhv:EventToCommandBehavior
+                                        EventName="ItemTapped"
+                                        Command="{Binding TapCommand}">
+                                    </bhv:EventToCommandBehavior>
+                                </ListView.Behaviors>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextCell Text="{Binding Name}" TextColor="white"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <Button x:Name="BtnAddJob" Style="{StaticResource StandardButton}" Text="Add" Command="{Binding AddVacancy}"/>
+                        </StackLayout>
+                    </FlexLayout>
+                    </Frame>
+                    <Label Style="{StaticResource SwipeCardCompanyName}" HorizontalTextAlignment="Center" Text="Current vancancies" Margin="0,20,0,0"/>
+                <ListView x:Name="LstVacancy" HorizontalOptions="Center" HasUnevenRows="true" SelectionMode="None" ItemsSource="{Binding Vacancies}">
+                    <ListView.Behaviors>
+                        <bhv:EventToCommandBehavior
+                                        EventName="ItemTapped"
+                                        Command="{Binding TapDeleteVacancy}">
+                        </bhv:EventToCommandBehavior>
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="100">
+                                <Frame Style="{StaticResource InputBorder}">
+                                    <FlexLayout JustifyContent="SpaceAround" AlignItems="Center">
+                                        <Label Style="{StaticResource LabelInput}" Text="{Binding Name}"/>
+                                        <Label TextColor="Red" Text="Tap vacancy to delete"/>
+                                    </FlexLayout>
+                                </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

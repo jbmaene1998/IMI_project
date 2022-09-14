@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Imi.Project.Mobile.Pages.ChooseUserTypePage"
+             Style="{StaticResource MainLayout}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Style="{StaticResource SmallLogo}"/>
+            <Label Style="{StaticResource Title}" Text="Who are you?"/>
+            <Button x:Name="BtnCreateRecruiter" Style="{StaticResource StandardButton}" Text="Recruiter" Command="{Binding CreateRecruiter}"></Button>
+            <Button x:Name="BtnCreateStudent" Style="{StaticResource StandardButton}" Text="Student" Command="{Binding CreateStudent}"></Button>
+        </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

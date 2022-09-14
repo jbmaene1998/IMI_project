@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Imi.Project.Mobile.Pages.RecruiterDetailPage"             
+             Style="{StaticResource MainLayout}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <FlexLayout JustifyContent="SpaceAround">
+                <ImageButton x:Name="Home" Style="{StaticResource HomeIcon}" Command="{Binding GoHome}"/>
+                <Image Style="{StaticResource SmallLogo}"/>
+                <ImageButton x:Name="Settings" Style="{StaticResource SettingsIcon}" Command="{Binding OpenSettings}"/>
+            </FlexLayout>
+            <FlexLayout x:Name="container" JustifyContent="Center" Direction="Column" AlignItems="Center">
+                <Frame Style="{StaticResource ProfilePicture}" CornerRadius="100">
+                    <Image Source="{Binding Recruiter.ImageUrl}"></Image>
+                </Frame>
+                <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="First name"/>
+                <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Recruiter.FirstName}"/>
+                <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="Company:"/>
+                <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Recruiter.Company.Name}"/>
+                <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="HQ location:"/>
+                <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Recruiter.Company.Location.City}"/>
+                <Button x:Name="BtnWebsite" Style="{StaticResource CreateAccountButton}" Text="Visit website"/>
+                <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="Recruiter name"/>
+                <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Recruiter.FirstName}"/>
+                <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="Email:"/>
+                <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Recruiter.Email}"/>
+                <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="Phone:"/>
+                <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Recruiter.Phone}"/>
+            </FlexLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

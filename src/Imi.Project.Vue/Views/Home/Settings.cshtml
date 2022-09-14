@@ -1,0 +1,163 @@
+﻿
+
+<form id="app">
+    <div class="mb-1"></div>
+        <div class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" v-model="user.firstName" required/>
+        <label class="form-label text-white" for="firstName">FirstName</label>
+    </div>
+        <div class="mb-1"></div>
+        <div class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" v-model="user.lastName" required/>
+        <label class="form-label text-white" for="lastName">LastName</label>
+    </div>
+    <div class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" v-model="user.email" required/>
+        <label class="form-label text-white" for="email">Email address</label>
+    </div>
+        <div class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" v-model="user.phoneNumber" required/>
+        <label class="form-label text-white" for="phoneNumber">PhoneNumber</label>
+    </div>
+        <div class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" v-model="user.dateOfBirth" required/>
+        <label class="form-label text-white" for="dateOfBirth">DateOfBirth</label>
+    </div>
+    <div id="app">
+  <div class="form-outline mb-4">
+    <input class="form-control" type="text" v-model="searchCompany" v-on:input="filterCompanies" placeholder="Search company"/>
+    <p></p>
+    <select class="form-control" v-model="selectedCompanyId">
+    <option v-for="company in companies" v-bind:value="company.id">{{ company.name }}</option>
+    </select>
+    <label class="form-label text-white" for="company">Company</label>
+  </div> 
+  <div class="form-outline mb-4">
+    <select class="form-control" v-on:change="getContinents" v-model="continent">
+    <option v-for="continent in continents">{{ continent.output }}</option>
+    </select>
+    <label class="form-label text-white" for="continent">Continent</label>
+  </div>
+    <div class="form-outline mb-4">
+    <select class="form-control" v-on:change="getCountries" v-model="country">
+    <option v-for="country in countries" >{{ country.output }}</option>
+    </select>
+    <label class="form-label text-white" for="country">Country</label>
+  </div> 
+    <div class="form-outline mb-4">
+    <input class="form-control" type="text" v-model="searchCity" v-on:input="filterCities" placeholder="Search city"/>
+    <p></p>
+    <select class="form-control" v-model="selectedCityId">
+    <option v-for="city in cities" v-bind:value="city.id">{{ city.city }}</option>
+    </select>
+    <label class="form-label text-white" for="city">City</label>
+  </div> 
+    </div>
+    <button type="button" class="btn btn-primary btn-block mb-4" v-on:click="save">Update account</button>
+</form>
+
+@section scripts{
+ <script src="~/lib/vue/vue.js"></script>
+ <script src="~/lib/axios/axios.min.js"></script>
+ <script>
+    var baseUrl= "https://localhost:5001/";
+    const axiosConfig = { headers: {'Content-Type': 'application/json', Authorization: `Bearer ${sessionStorage.getItem('token')}`}};
+    
+    var app = new Vue({
+        el: "#app",
+        data: {
+            companies: [],
+            countries: [],
+            continents: [],
+            cities: [],
+
+            searchCompany: "",
+            searchCity: "",
+
+            selectedCompanyId: "",
+            selectedCityId: "",
+
+            company: {},
+            continent: {},
+            country: {},   
+            city: {},
+
+            user: {}
+        },
+        created: function() {
+            this.getContinents(),
+            this.getUser()
+
+        },
+        methods: {
+            filterCompanies() {
+            var pathUrl = `Search/${this.searchCompany.toLowerCase()}/companies`
+                  axios.get(baseUrl + pathUrl, axiosConfig)
+                  .then(response => {
+                    this.companies = response.data
+                  })
+        },
+        getContinents() {
+            var pathUrl = `Location`
+                  axios.get(baseUrl + pathUrl, axiosConfig)
+                  .then(response => {
+                    this.continents = response.data,
+                    this.getCountries()
+                  })
+        },  
+        getCountries: function() {
+                 var pathUrl = `Location/${this.continent}/countries`
+                  axios.get(baseUrl + pathUrl, axiosConfig)
+                  .then(response => {
+                    this.countries = response.data
+                  })
+        },
+        filterCities() {
+            var pathUrl = `Search/${this.searchCity.toLowerCase()}/${this.country}/${this.continent}/cities`
+                  axios.get(baseUrl + pathUrl, axiosConfig)
+                  .then(response => {
+                    this.cities = response.data
+                  })
+        },
+        getUser() {
+            var pathUrl = "Recruiter/" + sessionStorage.getItem('id');
+                  axios.get(baseUrl + pathUrl, axiosConfig)
+                  .then(response => {
+                    test = response.data;
+                      console.log(test),
+                      this.user.id = sessionStorage.getItem('id'),
+                      this.user.firstName = response.data.firstName,
+                      this.user.lastName = response.data.lastName,
+                      this.user.email = response.data.email,
+                      this.user.dateOfBirth = response.data.dateOfBirth,
+                      this.user.phoneNumber = response.data.phoneNumber
+                      this.user.companyId = response.data.company.id,
+                      this.user.locationId = response.data.location.id,
+                      this.user.password = "Ikbenrecruiter_2020",
+                      this.user.imageUrl = "https://thispersondoesnotexist.com/image",
+                      this.company.name =   response.data.company.name,
+                      this.company.name =   response.data.location.city,
+
+
+                      this.selectedCompanyId = response.data.company.id,
+                      this.selectedCityId = response.data.location.id
+
+                      this.searchCity = response.data.location.city,
+                      this.searchCompany = response.data.company.name
+                  })
+        },
+        save(){
+            this.user.locationId = this.selectedCityId,
+            this.user.companyId = this.selectedCompanyId,
+
+            console.log(this.user),
+
+            axios.put(baseUrl + "Recruiter", this.user, axiosConfig)
+            .then(function (response) {
+                    window.location = "https://localhost:44373/Home/Main";
+            });
+        }
+        }
+    })
+ </script>
+}

@@ -1,0 +1,67 @@
+﻿<div class="display: flex; justify-content: center;">
+<div id="app" style="display: flex; flex-wrap: wrap;">
+<form style="width: 600px;">
+    <div class="mb-1"></div>
+        <div class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" v-model="job.name" required/>
+        <label class="form-label text-white" for="job">Job</label>
+    </div>
+    <button type="button" class="btn btn-primary btn-block mb-4" v-on:click="addJob()">Add job</button>
+</form>
+    <div class="card w-25 m-2" v-for="job in jobs">
+    <div class="card-body">
+        <h5 class="card-title">{{job.name}}</h5>
+        <a href="#" class="btn btn-primary" v-on:click="deleteJob(job.id)">Delete</a>
+    </div>
+    </div>
+</div>
+</div>
+
+@section scripts{
+ <script src="~/lib/vue/vue.js"></script>
+ <script src="~/lib/axios/axios.min.js"></script>
+ <script>
+    var baseUrl= "https://localhost:5001/";
+    const axiosConfig = { headers: {'Content-Type': 'application/json', Authorization: `Bearer ${sessionStorage.getItem('token')}`}};
+    
+    var app = new Vue({
+        el: "#app",
+        data: {
+            jobs: [],
+            job: {}
+        },
+        created: function(){
+            this.getJobs()
+        },
+        methods: {
+        getJobs() {
+                  axios.get(baseUrl + "Job", axiosConfig)
+                  .then(response => {
+                    this.jobs = response.data
+                  })
+        },
+                deleteJob(id) {
+                  axios.delete(baseUrl + `Job/${id}`, axiosConfig)
+                  .then(response => {
+                    this.jobs = response.data,
+                    this.getJobs()
+                  })
+        },
+                addJob() {
+                    this.job.id = this.uuidv4(),
+                  axios.post(baseUrl + "job", this.job , axiosConfig)
+                  .then(response => {
+                    this.getJobs()
+                  })
+        },
+        //https://qawithexperts.com/article/javascript/generating-guiduuid-using-javascript-various-ways/372
+        uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
+                return v.toString(16)
+            });
+            }
+        }
+    })
+ </script>
+}

@@ -1,0 +1,148 @@
+﻿
+
+<form id="app">
+    <div class="mb-1"></div>
+        <div class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" v-model="user.firstName" required/>
+        <label class="form-label text-white" for="firstName">FirstName</label>
+    </div>
+        <div class="mb-1"></div>
+        <div class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" v-model="user.lastName" required/>
+        <label class="form-label text-white" for="lastName">LastName</label>
+    </div>
+    <div class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" v-model="user.email" required/>
+        <label class="form-label text-white" for="email">Email address</label>
+    </div>
+        <div class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" v-model="user.phoneNumber" required/>
+        <label class="form-label text-white" for="phoneNumber">PhoneNumber</label>
+    </div>
+        <div class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" v-model="user.dateOfBirth" required/>
+        <label class="form-label text-white" for="dateOfBirth">DateOfBirth</label>
+    </div>
+        <div class="form-outline mb-4">
+        <input type="text" id="form2Example1" class="form-control" v-model="user.password" required/>
+        <label class="form-label text-white" for="password">Password</label>
+    </div>
+    <div id="app">
+  <div class="form-outline mb-4">
+    <input class="form-control" type="text" v-model="searchCompany" v-on:input="filterCompanies" placeholder="Search company"/>
+    <p></p>
+    <select class="form-control" v-model="selectedCompanyId">
+    <option v-for="company in companies" v-bind:value="company.id">{{ company.name }}</option>
+    </select>
+    <label class="form-label text-white" for="company">Company</label>
+  </div> 
+  <div class="form-outline mb-4">
+    <select class="form-control" v-on:change="getContinents" v-model="continent">
+    <option v-for="continent in continents">{{ continent.output }}</option>
+    </select>
+    <label class="form-label text-white" for="continent">Continent</label>
+  </div>
+    <div class="form-outline mb-4">
+    <select class="form-control" v-on:change="getCountries" v-model="country">
+    <option v-for="country in countries" >{{ country.output }}</option>
+    </select>
+    <label class="form-label text-white" for="country">Country</label>
+  </div> 
+    <div class="form-outline mb-4">
+    <input class="form-control" type="text" v-model="searchCity" v-on:input="filterCities" placeholder="Search city"/>
+    <p></p>
+    <select class="form-control" v-model="selectedCityId">
+    <option v-for="city in cities" v-bind:value="city.id">{{ city.city }}</option>
+    </select>
+    <label class="form-label text-white" for="city">City</label>
+  </div> 
+    </div>
+    <button type="button" class="btn btn-primary btn-block mb-4" v-on:click="save">Update account</button>
+</form>
+
+@section scripts{
+ <script src="~/lib/vue/vue.js"></script>
+ <script src="~/lib/axios/axios.min.js"></script>
+ <script>
+    var baseUrl= "https://localhost:5001/";
+    const axiosConfig = { headers: {'Content-Type': 'application/json', Authorization: `Bearer ${sessionStorage.getItem('token')}`}};
+    
+    var app = new Vue({
+        el: "#app",
+        data: {
+            companies: [],
+            countries: [],
+            continents: [],
+            cities: [],
+
+            searchCompany: "",
+            searchCity: "",
+
+            selectedCompanyId: "",
+            selectedCityId: "",
+
+            company: {},
+            continent: {},
+            country: {},   
+            city: {},
+
+            user: {}
+        },
+        created: function() {
+            this.getContinents()
+        },
+        methods: {
+            filterCompanies() {
+            var pathUrl = `Search/${this.searchCompany.toLowerCase()}/companies`
+                  axios.get(baseUrl + pathUrl, axiosConfig)
+                  .then(response => {
+                    this.companies = response.data
+                  })
+        },
+        getContinents() {
+            var pathUrl = `Location`
+                  axios.get(baseUrl + pathUrl, axiosConfig)
+                  .then(response => {
+                    this.continents = response.data,
+                    this.getCountries()
+                  })
+        },  
+        getCountries: function() {
+                 var pathUrl = `Location/${this.continent}/countries`
+                  axios.get(baseUrl + pathUrl, axiosConfig)
+                  .then(response => {
+                    this.countries = response.data
+                  })
+        },
+        filterCities() {
+            var pathUrl = `Search/${this.searchCity.toLowerCase()}/${this.country}/${this.continent}/cities`
+                  axios.get(baseUrl + pathUrl, axiosConfig)
+                  .then(response => {
+                    this.cities = response.data
+                  })
+        },
+        save(){
+            this.user.locationId = this.selectedCityId,
+            this.user.companyId = this.selectedCompanyId,
+            this.user.imageUrl = "https://thispersondoesnotexist.com/image",
+            this.user.confirmPassword = this.user.password,
+            this.user.id = this.uuidv4(),
+
+            console.log(this.user),
+
+            axios.post(baseUrl + "Recruiter/register", this.user, axiosConfig)
+            .then(function (response) {
+                    window.location = "https://localhost:44373/Home";
+            });
+        },
+        //https://qawithexperts.com/article/javascript/generating-guiduuid-using-javascript-various-ways/372
+        uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8)
+                return v.toString(16)
+            });
+            }
+        }
+    })
+ </script>
+}

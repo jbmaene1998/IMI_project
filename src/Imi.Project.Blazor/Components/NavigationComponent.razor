@@ -1,0 +1,15 @@
+﻿@inherits Imi.Project.Blazor.Components.Base.NavigationComponentBase
+@using Imi.Project.Blazor.Core.Modals
+
+<div class="d-flex flex-column">
+    <a class="btn btn-primary" @onclick="OnHomeClick">Home</a>
+    <a class="btn btn-primary" @onclick="OnMatchClick">Matches</a>
+    @{ 
+        if (LoginState.IsRecruiter is true)
+        {
+            <a class="btn btn-primary" @onclick="OnVacanciesClick">Vacancies</a>
+        }
+    }
+    <a class="btn btn-primary" @onclick="OnSettingsClick">Modify profile</a>
+    <a class="btn btn-primary" @onclick="OnLogOutClick">Log out</a>
+</div>

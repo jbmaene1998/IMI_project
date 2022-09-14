@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Imi.Project.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Imi.Project.Api.Controllers.CompanyController.Get">
+            <summary>
+            Get all companies
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.CompanyController.Get(System.String)">
+            <summary>
+            Get company by id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.CompanyController.Add(Imi.Project.Api.Core.Dtos.CompanyRequestDto)">
+            <summary>
+            Add a company
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.CompanyController.Update(Imi.Project.Api.Core.Dtos.CompanyRequestDto)">
+            <summary>
+            Update/Modify company
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.CompanyController.Delete(System.String)">
+            <summary>
+            Delete a company
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.JobController.Get">
+            <summary>
+            Get all jobs
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.JobController.Get(System.String)">
+            <summary>
+            Get a job by id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.JobController.Add(Imi.Project.Api.Core.Dtos.JobRequestDto)">
+            <summary>
+            Add a job
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.JobController.Delete(System.String)">
+            <summary>
+            Delete a job
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.LikeController.GetFromStudents(System.String)">
+            <summary>
+            Get all likes from a student by id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.LikeController.GetFromRecruiters(System.String)">
+            <summary>
+            Get all likes from a recruiter by id 
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.LikeController.Add(Imi.Project.Api.Core.Dtos.LikeRequestDto)">
+            <summary>
+            Add a like
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.LocationController.Get">
+            <summary>
+            Get all continents
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.LocationController.GetCountries(System.String)">
+            <summary>
+            Get all countries by continent
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.LocationController.GetCities(System.String,System.String)">
+            <summary>
+            Get all cities by continent and country
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.LocationController.Get(System.String)">
+            <summary>
+            Get a location by id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.LocationController.Add(Imi.Project.Api.Core.Dtos.LocationRequestDto)">
+            <summary>
+            Add a location
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.LocationController.Update(Imi.Project.Api.Core.Dtos.LocationRequestDto)">
+            <summary>
+            Update/Modify a location
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.LocationController.Delete(System.String)">
+            <summary>
+            Delete a location by id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.LoginController.Login(Imi.Project.Api.Core.Dtos.LoginRequestDto)">
+            <summary>
+            Login as user
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.MatchController.GetByStudent(System.String)">
+            <summary>
+            Get all matches from a student by student id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.MatchController.GetByRecruiter(System.String)">
+            <summary>
+            Get all matches from a recruiter by recruiter id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.MatchController.Add(Imi.Project.Api.Core.Dtos.MatchRequestDto)">
+            <summary>
+            Add a match
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.MessagesController.GetFromStudent(System.String,System.String)">
+            <summary>
+            Get all messages between a student and a recruiter for a student
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.MessagesController.GetFromRecruiter(System.String,System.String)">
+            <summary>
+            Get all messages between a student and a recruiter for a recruiter
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.MessagesController.Add(Imi.Project.Api.Core.Dtos.MessageRequestDto)">
+            <summary>
+            Add a message
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.RecruiterController.Register(Imi.Project.Api.Core.Dtos.RegisterRecruiterRequestDto)">
+            <summary>
+            Register a recruiter
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.RecruiterController.Get(System.String)">
+            <summary>
+            Get a recruiter by id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.RecruiterController.GetAllForStudent(System.String)">
+            <summary>
+            Get all potential recruiters for student by student id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.RecruiterController.Update(Imi.Project.Api.Core.Dtos.RecruiterRequestDto)">
+            <summary>
+            Update/Modify a recruiter
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.RecruiterController.Delete(System.String)">
+            <summary>
+            Delete a recruiter by id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.RecruiterController.AddOrUpdateImage(System.String,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Save/Update an image
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.SchoolController.Get">
+            <summary>
+            Get all schools
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.SchoolController.Get(System.String)">
+            <summary>
+            Get school by id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.SchoolController.Add(Imi.Project.Api.Core.Dtos.SchoolRequestDto)">
+            <summary>
+            Add a school
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.SchoolController.Update(Imi.Project.Api.Core.Dtos.SchoolRequestDto)">
+            <summary>
+            Update/Modify a school
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.SchoolController.Delete(System.String)">
+            <summary>
+            Delete a school by id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.SearchController.SearchCompany(System.String)">
+            <summary>
+            Search for a company
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.SearchController.SearchJob(System.String)">
+            <summary>
+            Search for a job
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.SearchController.SearchSchool(System.String)">
+            <summary>
+            Search for a school
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.SearchController.SearchCity(System.String,System.String,System.String)">
+            <summary>
+            Search for a city
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.StudentController.Register(Imi.Project.Api.Core.Dtos.RegisterStudentRequestDto)">
+            <summary>
+            Register a student
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.StudentController.Get(System.String)">
+            <summary>
+            Get a student by id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.StudentController.GetAllForRecruiter(System.String)">
+            <summary>
+            Get all potential students for recruiter by recruiter id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.StudentController.Update(Imi.Project.Api.Core.Dtos.StudentRequestDto)">
+            <summary>
+            Update/Modify a student
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.StudentController.Delete(System.String)">
+            <summary>
+            Delete a student by ID
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.StudentController.AddOrUpdateImage(System.String,Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Save/Update an image
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.VacancyController.Get">
+            <summary>
+            Get all vacancies
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.VacancyController.Get(System.String)">
+            <summary>
+            Get vacancy by id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.VacancyController.Add(Imi.Project.Api.Core.Dtos.VacancyRequestDto)">
+            <summary>
+            Add a vacancy
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.VacancyController.Delete(System.String)">
+            <summary>
+            Delete a vacancy by id
+            </summary>
+        </member>
+        <member name="M:Imi.Project.Api.Controllers.VacancyController.GetByRecruiter(System.String)">
+            <summary>
+            Get all vacancies from a recruiter by recruiter id
+            </summary>
+        </member>
+    </members>
+</doc>

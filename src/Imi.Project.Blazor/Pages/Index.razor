@@ -1,0 +1,21 @@
+﻿@page "/"
+@inherits Imi.Project.Blazor.Pages.Base.LoginBase
+
+<EditForm Model="@_credentials"OnValidSubmit="@Validate">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <h1>Login</h1>
+    <div style="display: flex; flex-direction: column; justify-content: center; margin-left: auto; margin-right: auto">
+        <div class="form-floating mb-3">
+            <InputText class="form-control" @bind-Value="_credentials.Email" />
+            <label>Email address</label>
+        </div>
+        <div class="form-floating">
+            <InputText class="form-control" @bind-Value="_credentials.Password" />
+            <label>Password</label>
+        </div>
+        <button class="btn btn-primary" type="submit">Login</button>
+        <a class="btn btn-primary" @onclick="ToCreateRecruiter">Create recruiter</a>
+        <a class="btn btn-primary" >Create student</a>
+    </div>
+</EditForm>

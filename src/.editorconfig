@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0016: Could not write to output file 'C:\Users\jbmae\Source\Repos\st-2122-1-S3-project-jbmaene1998\src\Imi.Project.Api\Imi.Project.Api.xml' -- 'Access to the path 'C:\Users\jbmae\Source\Repos\st-2122-1-S3-project-jbmaene1998\src\Imi.Project.Api\Imi.Project.Api.xml' is denied.'
+dotnet_diagnostic.CS0016.severity = none

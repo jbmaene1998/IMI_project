@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Imi.Project.Mobile.Pages.LoginPage"
+             Style="{StaticResource MainLayout}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Style="{StaticResource MediumLogo}"/>
+            <Frame Style="{StaticResource InputBorder}">
+                <Entry x:Name="TxtEmail" Style="{StaticResource TextInput}" Placeholder="Email" Text="{Binding Email}"/>
+            </Frame>
+            <Frame Style="{StaticResource InputBorder}">
+                <Entry x:Name="TxtPassword" Style="{StaticResource TextInput}" Placeholder="Password" Text="{Binding Password}"/>
+            </Frame>
+            <Frame
+                Style="{StaticResource InvinsibleFrame}">
+                <Button x:Name="BtnLogin" Style="{StaticResource StandardButton}" Text="Login" 
+                        Command="{Binding LoginUser}"/>
+            </Frame>
+            <Frame Style="{StaticResource InvinsibleFrame}">
+                <Button x:Name="BtnCreateAccount" Style="{StaticResource CreateAccountButton}" Text="No account? Make yours now!" 
+                        Command="{Binding CreateUser}"></Button>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

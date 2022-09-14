@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Imi.Project.Mobile.Pages.StudentMatchPage"             
+             Style="{StaticResource MainLayout}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <FlexLayout JustifyContent="SpaceAround">
+                    <ImageButton x:Name="BtnHome" Style="{StaticResource HomeIcon}" Command="{Binding GoHome}"/>
+                    <Image Style="{StaticResource SmallLogo}"/>
+                    <ImageButton x:Name="BtnSettings" Style="{StaticResource SettingsIcon}" Command="{Binding OpenSettings}"/>
+                </FlexLayout>
+                <Label Style="{StaticResource SwipeCardCompanyName}" HorizontalTextAlignment="Center" Text="Your matches"/>
+                <ListView x:Name="LstMatches" ItemsSource="{Binding Recruiters}" HorizontalOptions="Center" HasUnevenRows="true" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Style="{StaticResource InputBorder}">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Frame.GestureRecognizers>
+                                    <FlexLayout JustifyContent="SpaceAround" AlignItems="Center" HorizontalOptions="Center">
+                                        <Frame Style="{StaticResource SmallProfilePicture}" CornerRadius="100">
+                                            <!--Don't forget to change url-->
+                                            <Image BackgroundColor="Red" x:Name="circleImg" Source="https://thispersondoesnotexist.com/image"></Image>
+                                        </Frame>
+                                        <!--Not possible to show correct data with queries-->
+                                        <Label Style="{StaticResource LabelInput}" HorizontalTextAlignment="Center" Text="{Binding FirstName}"/>
+                                        <Label Style="{StaticResource LabelInput}" HorizontalTextAlignment="Center" Text="{Binding Company.Name}"/>
+                                    </FlexLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

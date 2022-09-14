@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Imi.Project.Mobile.Pages.StudentDetailPage"
+             Style="{StaticResource MainLayout}"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <FlexLayout JustifyContent="SpaceAround">
+                    <ImageButton x:Name="Home" Style="{StaticResource HomeIcon}" Command="{Binding GoHome}"/>
+                    <Image Style="{StaticResource SmallLogo}"/>
+                    <ImageButton x:Name="Settings" Style="{StaticResource SettingsIcon}" Command="{Binding OpenSettings}"/>
+                </FlexLayout>
+                <FlexLayout x:Name="container" JustifyContent="Center" Direction="Column" AlignItems="Center">
+                    <Frame Style="{StaticResource ProfilePicture}" CornerRadius="100">
+                        <Image Source="{Binding Student.ImageUrl}"></Image>
+                    </Frame>
+                    <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="Student:"/>
+                    <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Student.LastName}"/>
+                    <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="Age:"/>
+                    <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Student.DateOfBirth}"/>
+                    <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="Prefered location:"/>
+                    <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Student.Location}"/>
+                    <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="School"/>
+                    <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Student.School.Name}"/>
+                    <Button x:Name="BtnWebsite" Style="{StaticResource CreateAccountButton}" Text="Visit website"/>
+                    <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="Email"/>
+                    <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Student.Email}"/>
+                    <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="Phone"/>
+                    <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Student.Phone}"/>
+                    <Label Style="{StaticResource SkillText}" Margin="0,10,0,0" Text="Looking for internship as"/>
+                    <Label Style="{StaticResource SwipeCardCompanyName}" Text="{Binding Student.Job.Name}"/>
+                </FlexLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
